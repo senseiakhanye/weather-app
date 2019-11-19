@@ -4,7 +4,7 @@ const geocode = (address, callback) => {
     const mapboxapi = "pk.eyJ1IjoiYWtoYW55ZSIsImEiOiJjazMycnhxam8wbDh1M2NzM2Vkd2x2dWoyIn0.2bBWr638WgD8bJtt1DDtQw";
     const mapboxurl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+ encodeURIComponent(address) +".json?access_token=" + mapboxapi;
 
-    request({ url: mapboxurl, json: true}, (error, response, body) => {
+    request({ url: mapboxurl, json: true}, (error, { body }) => {
         if (error !== undefined && error !== null) {
             return callback("Unable to connect to the api")
         }
@@ -24,7 +24,7 @@ const forecast = (latlong, callback) => {
         return callback("Lat Long provided not valid");
     }
     const url = "https://api.darksky.net/forecast/52e0c25d4664d54ee5f4593067bdcfa5/" + latlong.lat +"," + latlong.long;
-    request({url: url, json: true}, (error, response, body) => {
+    request({url, json: true}, (error, {body}) => {
         if (error === undefined === error === null) {
             return callback("Unable to connect to forecast api");
         }
