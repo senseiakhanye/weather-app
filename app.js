@@ -7,7 +7,6 @@ const weatherservice = require('./utils/geocode');
 // const areaName = process.argv[2];
 
 const getWeather = (address, callback) => {
-    console.log(address);
     weatherservice.geocode(address, (error, data) => {
         if (error !== undefined) {
             if (callback !== undefined) {
